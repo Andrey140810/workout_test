@@ -39,6 +39,9 @@
   gap: 1rem;
   border: 1px solid rgba(255, 255, 255, 0.1);
   transition: all 0.2s ease;
+  box-sizing: border-box;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .stat-card:hover {
@@ -75,6 +78,9 @@
   margin-bottom: 3rem;
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: var(--shadow-lg);
+  box-sizing: border-box;
+  overflow: hidden;
+  width: 100%;
 }
 
 .workout-card-header {
@@ -199,6 +205,9 @@
   transition: all 0.2s ease;
   text-decoration: none;
   color: inherit;
+  box-sizing: border-box;
+  overflow: hidden;
+  width: 100%;
 }
 
 .program-card:hover {
@@ -235,18 +244,130 @@
 @media (max-width: 768px) {
   .dashboard {
     padding: 1rem;
+    overflow-x: hidden;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .dashboard-header h1 {
-    font-size: 2rem;
+    font-size: 1.75rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .dashboard-subtitle {
+    font-size: 1rem;
   }
 
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    min-width: 0;
+  }
+
+  .stat-card {
+    padding: 1rem;
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .stat-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+  }
+
+  .stat-content {
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .stat-value {
+    font-size: 1.5rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .current-workout-card {
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+
+  .workout-card-header {
+    flex-direction: column;
+    align-items: flex-start;
     gap: 1rem;
+  }
+
+  .workout-card-header h2 {
+    font-size: 1.25rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .workout-badge {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.8rem;
+    white-space: nowrap;
   }
 
   .workout-info {
     gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .workout-info-item {
+    min-width: 0;
+    flex: 1 1 auto;
+  }
+
+  .info-value {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    font-size: 1rem;
+  }
+
+  .exercises-preview h3 {
+    font-size: 1rem;
+  }
+
+  .exercises-list li {
+    font-size: 0.9rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .programs-section h2 {
+    font-size: 1.5rem;
+  }
+
+  .programs-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .program-card {
+    padding: 1.25rem;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .program-card h3 {
+    font-size: 1.1rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .program-card p {
+    font-size: 0.9rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 }

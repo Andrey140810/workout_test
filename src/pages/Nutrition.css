@@ -2,6 +2,9 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 .nutrition-header {
@@ -57,6 +60,9 @@
   padding: 2.5rem;
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: var(--shadow-lg);
+  box-sizing: border-box;
+  overflow: hidden;
+  width: 100%;
 }
 
 .calculator-card h2 {
@@ -160,6 +166,9 @@
   border-radius: 12px;
   padding: 1.5rem;
   border: 1px solid rgba(255, 255, 255, 0.05);
+  box-sizing: border-box;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .result-item.highlight {
@@ -204,6 +213,9 @@
   align-items: center;
   gap: 1rem;
   border: 1px solid rgba(255, 255, 255, 0.05);
+  box-sizing: border-box;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .macro-item.protein {
@@ -413,6 +425,8 @@
   align-self: start;
   width: 100%;
   box-sizing: border-box;
+  overflow: hidden;
+  min-width: 0;
 }
 
 .recipe-card:hover {
@@ -626,19 +640,276 @@
 @media (max-width: 768px) {
   .nutrition-page {
     padding: 1rem;
+    overflow-x: hidden;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .nutrition-header h1 {
+    font-size: 1.75rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .nutrition-tabs {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+
+  .tab-button {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.9rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .calculator-card {
+    padding: 1.5rem;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .calculator-card h2 {
+    font-size: 1.5rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .calculator-description {
+    font-size: 0.95rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
   
   .form-row {
     grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .form-group {
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .form-group label {
+    font-size: 0.85rem;
+  }
+
+  .form-group input,
+  .form-group select {
+    font-size: 0.95rem;
+    padding: 0.75rem;
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  .results-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    min-width: 0;
+  }
+
+  .result-item {
+    padding: 1.25rem;
+    min-width: 0;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+
+  .result-label {
+    font-size: 0.85rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .result-value {
+    font-size: 1.5rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .macros-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    min-width: 0;
+  }
+
+  .macro-item {
+    padding: 1.25rem;
+    min-width: 0;
+    overflow: hidden;
+    box-sizing: border-box;
+  }
+
+  .macro-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+
+  .macro-content {
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .macro-name,
+  .macro-value,
+  .macro-calories {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .macro-value {
+    font-size: 1.25rem;
+  }
+
+  .meal-plan-suggestion {
+    padding: 1.25rem;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .meal-plan-suggestion h4 {
+    font-size: 1.1rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .meals-per-day-selector {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .meals-per-day-selector button {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+    flex: 1 1 auto;
+    min-width: 60px;
+  }
+
+  .meal-plan-summary {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    min-width: 0;
+  }
+
+  .summary-item {
+    padding: 0.75rem;
+    font-size: 0.9rem;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .summary-item strong {
+    font-size: 1rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
   
   .recipes-list {
     grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .recipe-card {
+    padding: 1.25rem;
+    box-sizing: border-box;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .recipe-header {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .recipe-header h4 {
+    font-size: 1rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .recipe-stats,
+  .recipe-macros {
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    font-size: 0.85rem;
+  }
+
+  .recipe-details {
+    font-size: 0.9rem;
+  }
+
+  .recipe-ingredients li,
+  .recipe-instructions p {
+    font-size: 0.85rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .meal-category,
+  .meal-category-full {
+    padding: 1.5rem;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .meal-category-title {
+    font-size: 1.25rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .daily-meal-item {
+    padding: 1.25rem;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  .daily-meal-header {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .meal-time {
+    font-size: 1rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .daily-meal-name strong {
+    font-size: 1rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .daily-meal-info {
+    font-size: 0.85rem;
+    gap: 0.75rem;
   }
   
   .recipes-header {
     flex-direction: column;
     align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .recipes-header h2 {
+    font-size: 1.5rem;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+  }
+
+  .meals-selector {
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .meals-selector button {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+    flex: 1 1 auto;
+    min-width: 60px;
   }
 }
 
