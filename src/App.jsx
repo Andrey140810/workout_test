@@ -37,7 +37,7 @@ function App() {
   }, []);
 
   return (
-    <Router>
+    <Router basename="/workout_test">
       <div className="app">
         {user && <Navbar user={user} />}
         <main className="main-content">
