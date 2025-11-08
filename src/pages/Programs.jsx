@@ -1,4 +1,5 @@
 import { useParams, Link, useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { workoutPrograms } from '../data/workoutPrograms';
 import { getWorkoutProgram } from '../utils/workoutUtils';
 import './Programs.css';
@@ -86,12 +87,14 @@ function ProgramDetail({ level }) {
                           </li>
                         ))}
                       </ul>
-                      <button
+                      <motion.button
                         onClick={() => handleStartWorkout(week.week, day.day)}
                         className="btn-start-workout-day"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
                       >
                         Начать тренировку
-                      </button>
+                      </motion.button>
                     </>
                   ) : (
                     <div className="rest-day-badge">Отдых</div>

@@ -1,13 +1,29 @@
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { api } from '../../services/api';
 import './Navbar.css';
 
 export default function Navbar({ user }) {
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleLogout = async () => {
     await api.logout();
     navigate('/login');
+  };
+
+  const navLinks = [
+    { to: '/dashboard', label: 'Главная' },
+    { to: '/programs', label: 'Программы' },
+    { to: '/nutrition', label: 'Питание' },
+    { to: '/statistics', label: 'Статистика' }
+  ];
+
+  const isActive = (path) => {
+    if (path === '/dashboard') {
+      return location.pathname === '/dashboard';
+    }
+    return location.pathname.startsWith(path);
   };
 
   return (
@@ -19,16 +35,38 @@ export default function Navbar({ user }) {
         </Link>
         
         <div className="navbar-menu">
-          <Link to="/dashboard" className="navbar-link">Главная</Link>
-          <Link to="/programs" className="navbar-link">Программы</Link>
-          <Link to="/nutrition" className="navbar-link">Питание</Link>
-          <Link to="/statistics" className="navbar-link">Статистика</Link>
+          {navLinks.map((link) => (
+            <Link 
+              key={link.to} 
+              to={link.to} 
+              className="navbar-link"
+            >
+              {link.label}
+              {isActive(link.to) && (
+                <motion.div
+                  className="navbar-link-underline"
+                  layoutId="navbar-underline"
+                  initial={false}
+                  transition={{
+                    type: "spring",
+                    stiffness: 380,
+                    damping: 30
+                  }}
+                />
+              )}
+            </Link>
+          ))}
           {user && (
             <div className="navbar-user">
               <span className="user-name">{user.name}</span>
-              <button onClick={handleLogout} className="logout-btn">
+              <motion.button 
+                onClick={handleLogout} 
+                className="logout-btn"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
                 Выход
-              </button>
+              </motion.button>
             </div>
           )}
         </div>

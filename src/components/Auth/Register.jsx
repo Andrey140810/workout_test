@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { api } from '../../services/api';
 import './Auth.css';
 
@@ -30,6 +31,7 @@ export default function Register() {
 
     try {
       await api.register(email, password, name);
+      // После регистрации перенаправляем на логин
       navigate('/login');
     } catch (err) {
       setError(err.message);
@@ -95,9 +97,15 @@ export default function Register() {
             />
           </div>
           
-          <button type="submit" className="btn-primary" disabled={loading}>
+          <motion.button 
+            type="submit" 
+            className="btn-primary" 
+            disabled={loading}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
             {loading ? 'Регистрация...' : 'Зарегистрироваться'}
-          </button>
+          </motion.button>
         </form>
         
         <p className="auth-switch">

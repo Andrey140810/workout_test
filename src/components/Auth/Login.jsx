@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { api } from '../../services/api';
 import './Auth.css';
 
@@ -17,7 +18,10 @@ export default function Login() {
 
     try {
       await api.login(email, password);
-      navigate('/dashboard');
+      // Даем время для обновления состояния в App
+      setTimeout(() => {
+        navigate('/dashboard');
+      }, 100);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -58,9 +62,15 @@ export default function Login() {
             />
           </div>
           
-          <button type="submit" className="btn-primary" disabled={loading}>
+          <motion.button 
+            type="submit" 
+            className="btn-primary" 
+            disabled={loading}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
             {loading ? 'Вход...' : 'Войти'}
-          </button>
+          </motion.button>
         </form>
         
         <p className="auth-switch">

@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { api } from '../services/api';
 import { useAuth } from '../hooks/useAuth';
 import { getDayData, formatTime } from '../utils/workoutUtils';
@@ -156,9 +157,14 @@ export default function Workout() {
         <div className="rest-day-message">
           <h2>День отдыха</h2>
           <p>Сегодня нет тренировки. Отдохните и восстановитесь! 💆‍♂️</p>
-          <button onClick={() => navigate('/dashboard')} className="btn-primary">
+          <motion.button 
+            onClick={() => navigate('/dashboard')} 
+            className="btn-primary"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
             Вернуться на главную
-          </button>
+          </motion.button>
         </div>
       </div>
     );
@@ -175,9 +181,14 @@ export default function Workout() {
   return (
     <div className="workout-page">
       <div className="workout-header">
-        <button onClick={() => navigate('/dashboard')} className="btn-back">
+        <motion.button 
+          onClick={() => navigate('/dashboard')} 
+          className="btn-back"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
           ← Назад
-        </button>
+        </motion.button>
         <div className="workout-header-content">
           <div>
             <h1>{workoutData.name}</h1>
@@ -211,29 +222,35 @@ export default function Workout() {
             </div>
             <div className="rest-timer-controls">
               {!isRestTimerRunning ? (
-                <button 
+                <motion.button 
                   onClick={startRestTimer} 
                   className="timer-btn timer-btn-start"
                   title="Запустить таймер"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
                   ▶️ Старт
-                </button>
+                </motion.button>
               ) : (
-                <button 
+                <motion.button 
                   onClick={pauseRestTimer} 
                   className="timer-btn timer-btn-pause"
                   title="Пауза"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
                   ⏸️ Пауза
-                </button>
+                </motion.button>
               )}
-              <button 
+              <motion.button 
                 onClick={resetRestTimer} 
                 className="timer-btn timer-btn-reset"
                 title="Сбросить"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
                 ↻ Сброс
-              </button>
+              </motion.button>
             </div>
           </div>
         </div>
@@ -261,29 +278,35 @@ export default function Workout() {
 
         <div className="exercise-navigation">
           {currentExerciseIndex > 0 && (
-            <button
+            <motion.button
               onClick={() => setCurrentExerciseIndex(prev => prev - 1)}
               className="btn-nav"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
               ← Предыдущее
-            </button>
+            </motion.button>
           )}
           
           {currentExerciseIndex < workoutData.exercises.length - 1 ? (
-            <button
+            <motion.button
               onClick={() => setCurrentExerciseIndex(prev => prev + 1)}
               className="btn-nav btn-nav-primary"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
               Следующее →
-            </button>
+            </motion.button>
           ) : (
-            <button
+            <motion.button
               onClick={handleCompleteWorkout}
               disabled={!allExercisesCompleted}
               className="btn-complete"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
               {allExercisesCompleted ? 'Завершить тренировку ✓' : 'Заполните все подходы'}
-            </button>
+            </motion.button>
           )}
         </div>
       </div>
@@ -292,16 +315,18 @@ export default function Workout() {
         <h3>Все упражнения:</h3>
         <div className="exercises-list">
           {workoutData.exercises.map((exercise, idx) => (
-            <button
+            <motion.button
               key={idx}
               onClick={() => setCurrentExerciseIndex(idx)}
               className={`exercise-item ${idx === currentExerciseIndex ? 'active' : ''}`}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
               <span>{idx + 1}. {exercise.name}</span>
               {exerciseResults[idx] && exerciseResults[idx].every(set => set.reps) && (
                 <span className="checkmark">✓</span>
               )}
-            </button>
+            </motion.button>
           ))}
         </div>
       </div>

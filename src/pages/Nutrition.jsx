@@ -1,6 +1,8 @@
 import { useState } from 'react';
+// eslint-disable-next-line no-unused-vars
+import { motion } from 'framer-motion';
 import { calculateCalories, getActivityLevelDescription, getGoalDescription } from '../services/calorieCalculator';
-import { getMealPlan, recipes } from '../data/recipes';
+import { getMealPlan } from '../data/recipes';
 import './Nutrition.css';
 
 export default function Nutrition() {
@@ -114,18 +116,22 @@ export default function Nutrition() {
       </div>
 
       <div className="nutrition-tabs">
-        <button
+        <motion.button
           className={`tab-button ${!showCalculator ? 'active' : ''}`}
           onClick={() => setShowCalculator(false)}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
         >
           Рецепты
-        </button>
-        <button
+        </motion.button>
+        <motion.button
           className={`tab-button ${showCalculator ? 'active' : ''}`}
           onClick={() => setShowCalculator(true)}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
         >
           Калькулятор калорий
-        </button>
+        </motion.button>
       </div>
 
       {showCalculator ? (
@@ -220,9 +226,14 @@ export default function Nutrition() {
                 </div>
               </div>
 
-              <button type="submit" className="btn-calculate">
+              <motion.button 
+                type="submit" 
+                className="btn-calculate"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
                 Рассчитать
-              </button>
+              </motion.button>
             </form>
 
             {calculatorResult && (
@@ -277,33 +288,39 @@ export default function Nutrition() {
                   <div className="meal-plan-suggestion">
                     <h4>Примерный план питания ({mealsPerDay} приема пищи)</h4>
                     <div className="meals-per-day-selector">
-                      <button
+                      <motion.button
                         className={mealsPerDay === 3 ? 'active' : ''}
                         onClick={() => {
                           setMealsPerDay(3);
                           generateMealPlan(calculatorResult.dailyCalories);
                         }}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
                       >
                         3 раза
-                      </button>
-                      <button
+                      </motion.button>
+                      <motion.button
                         className={mealsPerDay === 4 ? 'active' : ''}
                         onClick={() => {
                           setMealsPerDay(4);
                           generateMealPlan(calculatorResult.dailyCalories);
                         }}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
                       >
                         4 раза
-                      </button>
-                      <button
+                      </motion.button>
+                      <motion.button
                         className={mealsPerDay === 5 ? 'active' : ''}
                         onClick={() => {
                           setMealsPerDay(5);
                           generateMealPlan(calculatorResult.dailyCalories);
                         }}
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
                       >
                         5 раз
-                      </button>
+                      </motion.button>
                     </div>
 
                     <div className="meal-plan-summary">
@@ -413,43 +430,51 @@ function RecipesView({ mealsPerDay, setMealsPerDay, selectedMealType, setSelecte
       <div className="recipes-section">
         <div className="recipes-header">
           <div className="recipes-header-left">
-            <button 
+            <motion.button 
               className="btn-back-recipes"
               onClick={() => setSelectedMealType(null)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
               ← Назад ко всем рецептам
-            </button>
+            </motion.button>
             <h2>Рецепты: {mealNames[selectedMealType]}</h2>
           </div>
           <div className="meals-selector">
             <span>Приемов пищи в день:</span>
-            <button
+            <motion.button
               className={mealsPerDay === 3 ? 'active' : ''}
               onClick={() => {
                 setMealsPerDay(3);
                 setSelectedMealType(null);
               }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
               3
-            </button>
-            <button
+            </motion.button>
+            <motion.button
               className={mealsPerDay === 4 ? 'active' : ''}
               onClick={() => {
                 setMealsPerDay(4);
                 setSelectedMealType(null);
               }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
               4
-            </button>
-            <button
+            </motion.button>
+            <motion.button
               className={mealsPerDay === 5 ? 'active' : ''}
               onClick={() => {
                 setMealsPerDay(5);
                 setSelectedMealType(null);
               }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
               5
-            </button>
+            </motion.button>
           </div>
         </div>
 
@@ -475,24 +500,30 @@ function RecipesView({ mealsPerDay, setMealsPerDay, selectedMealType, setSelecte
         <h2>Рецепты</h2>
         <div className="meals-selector">
           <span>Приемов пищи в день:</span>
-          <button
+          <motion.button
             className={mealsPerDay === 3 ? 'active' : ''}
             onClick={() => setMealsPerDay(3)}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
             3
-          </button>
-          <button
+          </motion.button>
+          <motion.button
             className={mealsPerDay === 4 ? 'active' : ''}
             onClick={() => setMealsPerDay(4)}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
             4
-          </button>
-          <button
+          </motion.button>
+          <motion.button
             className={mealsPerDay === 5 ? 'active' : ''}
             onClick={() => setMealsPerDay(5)}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
             5
-          </button>
+          </motion.button>
         </div>
       </div>
 
@@ -512,12 +543,14 @@ function RecipesView({ mealsPerDay, setMealsPerDay, selectedMealType, setSelecte
                   <RecipeCard key={recipe.id} recipe={recipe} />
                 ))}
                 {remainingCount > 0 && (
-                  <button 
+                  <motion.button 
                     className="btn-show-more"
                     onClick={() => handleShowMore(meal.type)}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                   >
                     Показать все рецепты ({meal.recipes.length})
-                  </button>
+                  </motion.button>
                 )}
               </div>
             </div>
@@ -538,7 +571,13 @@ function RecipeCard({ recipe }) {
           <span className="recipe-icon">{recipe.image}</span>
           <h4>{recipe.name}</h4>
         </div>
-        <button className="expand-btn">{expanded ? '−' : '+'}</button>
+        <motion.button 
+          className="expand-btn"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          {expanded ? '−' : '+'}
+        </motion.button>
       </div>
       
       <div className="recipe-info">

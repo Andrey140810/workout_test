@@ -180,6 +180,9 @@ export const api = {
     storage.currentUser = userWithoutPassword;
     localStorage.setItem('current_user', JSON.stringify(userWithoutPassword));
     
+    // Отправляем событие для обновления состояния пользователя в App
+    window.dispatchEvent(new Event('user-updated'));
+    
     return userWithoutPassword;
   },
 
@@ -187,6 +190,8 @@ export const api = {
     await delay(200);
     storage.currentUser = null;
     localStorage.removeItem('current_user');
+    // Отправляем событие для обновления состояния пользователя в App
+    window.dispatchEvent(new Event('user-updated'));
   },
 
   getCurrentUser() {
